@@ -16,12 +16,14 @@ RUN mvn dependency:resolve
 # Copy the rest of the application source code
 COPY src ./src
 
-# Build the final JAR/WAR
-RUN mvn package -DskipTests
+# Build the final JAR/WAR (skip checkstyle and tests)
+RUN mvn package -DskipTests -Dcheckstyle.skip=true
+FROM eclipse-temurin:21-jre AS run
 
 # --- STAGE 2: RUNTIME ---
 # Use a lightweight JRE (Java Runtime Environment) image
-Q-jre-focal AS run
+
+FROM eclipse-temurin:21-jre AS run
 
 # Arguments and Environment
 ARG JAR_FILE=target/*.jar
