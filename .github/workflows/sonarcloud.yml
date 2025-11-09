@@ -55,6 +55,14 @@ jobs:
     - name: Set SonarCloud organization
       run: echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}" >> $GITHUB_ENV
     
+    - name: Set branch name for SonarCloud
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          echo "SONAR_BRANCH_NAME=${{ github.head_ref }}" >> $GITHUB_ENV
+        else
+          echo "SONAR_BRANCH_NAME=${{ github.ref_name }}" >> $GITHUB_ENV
+        fi
+    
     - name: SonarCloud Scan
       uses: SonarSource/sonarqube-scan-action@v2.3.0
       env:
@@ -67,6 +75,7 @@ jobs:
           -Dsonar.projectKey=${{ env.PROJECT_KEY }}
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
           -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.branch.name=${{ env.SONAR_BRANCH_NAME }}
           -Dsonar.sources=src/main/java
           -Dsonar.tests=src/test/java
           -Dsonar.java.binaries=target/classes
