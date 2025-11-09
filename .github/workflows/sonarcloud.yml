@@ -52,6 +52,9 @@ jobs:
       id: set-project-key
       run: echo "PROJECT_KEY=$(echo '${{ github.repository }}' | cut -d'/' -f2)" >> $GITHUB_ENV
     
+    - name: Set SonarCloud organization
+      run: echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}" >> $GITHUB_ENV
+    
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       env:
