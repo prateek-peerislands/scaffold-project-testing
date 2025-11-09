@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/api/flights")
 public class FlightController {
 
+    /** Service for flight operations. */
     private final FlightService flightService;
 
     public FlightController(FlightService flightService) {

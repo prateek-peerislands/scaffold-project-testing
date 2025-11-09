@@ -1,0 +1,5 @@
+com/aa/flightapiwrapper/service/FlightService.class
+com/aa/flightapiwrapper/AaFlightapiApplication.class
+com/aa/flightapiwrapper/controller/FlightController.class
+com/aa/flightapiwrapper/dto/FlightResponse.class
+com/aa/flightapiwrapper/dto/FlightRequest.class

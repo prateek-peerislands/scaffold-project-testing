@@ -6,25 +6,22 @@ import java.time.LocalDateTime;
 
 public class FlightRequest {
     
+    /** Origin airport code. */
     @NotBlank(message = "Origin is required")
     private String origin;
     
+    /** Destination airport code. */
     @NotBlank(message = "Destination is required")
     private String destination;
     
+    /** Requested departure date and time. */
     @NotNull(message = "Departure date is required")
     private LocalDateTime departureDate;
     
+    /** Number of passengers. */
     private Integer passengers;
 
     public FlightRequest() {
-    }
-
-    public FlightRequest(String origin, String destination, LocalDateTime departureDate, Integer passengers) {
-        this.origin = origin;
-        this.destination = destination;
-        this.departureDate = departureDate;
-        this.passengers = passengers;
     }
 
     public String getOrigin() {

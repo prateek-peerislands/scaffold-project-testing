@@ -5,30 +5,34 @@ import java.util.List;
 
 public class FlightResponse {
     
+    /** Flight number identifier. */
     private String flightNumber;
+    
+    /** Origin airport code. */
     private String origin;
+    
+    /** Destination airport code. */
     private String destination;
+    
+    /** Scheduled departure time. */
     private LocalDateTime departureTime;
+    
+    /** Scheduled arrival time. */
     private LocalDateTime arrivalTime;
+    
+    /** Airline name. */
     private String airline;
+    
+    /** Flight price. */
     private Double price;
+    
+    /** Number of available seats. */
     private Integer availableSeats;
+    
+    /** List of amenities available on the flight. */
     private List<String> amenities;
 
     public FlightResponse() {
-    }
-
-    public FlightResponse(String flightNumber, String origin, String destination, 
-                         LocalDateTime departureTime, LocalDateTime arrivalTime, 
-                         String airline, Double price, Integer availableSeats) {
-        this.flightNumber = flightNumber;
-        this.origin = origin;
-        this.destination = destination;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.airline = airline;
-        this.price = price;
-        this.availableSeats = availableSeats;
     }
 
     public String getFlightNumber() {
