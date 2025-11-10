@@ -1,4 +1,4 @@
-name: 4. SonarCloud Analysis
+name: 3. SonarCloud Analysis
 
 on:
   push:
@@ -34,6 +34,7 @@ jobs:
         echo "GRADLE_USER_HOME=$HOME/.gradle" >> $GITHUB_ENV
       
 
+
     - name: Set up Java Environment
       uses: actions/setup-java@v4
       with:
@@ -53,7 +54,7 @@ jobs:
       run: echo "PROJECT_KEY=$(echo '${{ github.repository }}' | cut -d'/' -f2)" >> $GITHUB_ENV
     
     - name: Set SonarCloud organization
-      run: echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}" >> $GITHUB_ENV
+      run: echo "SONAR_ORGANIZATION=${{ vars.SONAR_ORGANIZATION }}" >> $GITHUB_ENV
     
     - name: Set branch name for SonarCloud
       run: |
@@ -68,12 +69,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+        SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
       with:
         projectBaseDir: .
         args: >
           -Dsonar.projectKey=${{ env.PROJECT_KEY }}
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+          -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.branch.name=${{ env.SONAR_BRANCH_NAME }}
           -Dsonar.sources=src/main/java
